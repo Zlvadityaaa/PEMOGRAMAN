@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Nilai Siswa</title>
+  <style>
+    /* === GLOBAL STYLE === */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e8ebf0, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+    }
+
+    /* === HEADER === */
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 40px 0 30px;
+      background: linear-gradient(90deg, #222831, #393e46);
+      color: white;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+      border-bottom: 3px solid #00adb5;
+      animation: slideDown 1s ease;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    /* === MAIN CONTENT === */
+    main {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      margin: 60px 20px;
+      padding: 40px;
+      max-width: 900px;
+      width: 90%;
+      animation: fadeIn 1.2s ease;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 22px;
+      color: #00adb5;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* === TABLE === */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: center;
+    }
+
+    th {
+      background: linear-gradient(90deg, #00adb5, #007f88);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    tr:hover {
+      background-color: rgba(0, 173, 181, 0.1);
+      transform: scale(1.01);
+      transition: all 0.3s ease;
+    }
+
+    td {
+      color: #333;
+    }
+
+    td strong {
+      color: #00adb5;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background: linear-gradient(90deg, #393e46, #222831);
+      color: #eeeeee;
+      text-align: center;
+      padding: 14px 0;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      width: 100%;
+      margin-top: auto;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s ease;
+    }
+
+    /* === ANIMASI BACKGROUND === */
+    .animated-bg {
+      position: fixed;
+      top: -100px;
+      left: -100px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(0,173,181,0.25), transparent 70%);
+      border-radius: 50%;
+      animation: moveCircle 10s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    .animated-bg2 {
+      position: fixed;
+      bottom: -120px;
+      right: -120px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(34,40,49,0.2), transparent 70%);
+      border-radius: 50%;
+      animation: moveCircle2 12s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes moveCircle {
+      from {transform: translate(0, 0);}
+      to {transform: translate(50px, 50px);}
+    }
+
+    @keyframes moveCircle2 {
+      from {transform: translate(0, 0);}
+      to {transform: translate(-60px, -40px);}
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      header h1 {font-size: 22px;}
+      h3 {font-size: 18px;}
+      main {padding: 25px;}
+      table {font-size: 14px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Background animasi -->
+  <div class="animated-bg"></div>
+  <div class="animated-bg2"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Tabel Nilai Siswa</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h3>Data Nilai</h3>
+    <script>
+      const nama = ["Asep", "Iwan", "Cepi", "Agus", "Dadang"];
+      const tugas = [80, 75, 70, 65, 60];
+      const uts = [95, 75, 80, 40, 70];
+      const uas = [85, 90, 90, 55, 60];
+      const nilaiAkhir = [];
+
+      for (let i = 0; i < nama.length; i++) {
+        const na = (0.4 * tugas[i]) + (0.3 * uts[i]) + (0.3 * uas[i]);
+        nilaiAkhir.push(na);
+      }
+
+      let tableHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Siswa</th>
+            <th>Tugas</th>
+            <th>UTS</th>
+            <th>UAS</th>
+            <th>Nilai Akhir</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      for (let i = 0; i < nama.length; i++) {
+        tableHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${nama[i]}</td>
+            <td>${tugas[i]}</td>
+            <td>${uts[i]}</td>
+            <td>${uas[i]}</td>
+            <td><strong>${nilaiAkhir[i].toFixed(1)}</strong></td>
+          </tr>`;
+      }
+
+      tableHTML += `</tbody></table>`;
+      document.write(tableHTML);
+    </script>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Zlvadityaaa | Desain oleh ZALVA KASEP
+  </footer>
+</body>
+</html>
